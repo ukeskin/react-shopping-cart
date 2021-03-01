@@ -14,7 +14,9 @@ function App() {
   const addToCart = (product) => {
     setCart([...cart, { ...product }]);
   };
-
+  const clearCart = () => {
+    setCart([]);
+  };
   const navigateTo = (nextPage) => {
     setPage(nextPage);
   };
@@ -60,7 +62,11 @@ function App() {
       </header>
       {page == PAGE_PRODUCTS && <Products addToCart={addToCart} />}
       {page == PAGE_CART && (
-        <Cart cart={cart} removeFromCart={removeFromCart} />
+        <Cart
+          cart={cart}
+          removeFromCart={removeFromCart}
+          clearCart={clearCart}
+        />
       )}
     </div>
   );
