@@ -4,25 +4,25 @@ export default function Products({ addToCart }) {
   const [products] = useState([
     {
       name: "Headphones v0",
-      cost: "$2.99",
+      cost: 2.99,
       image:
         "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
     },
     {
       name: "Headphones v1",
-      cost: "$12.99",
+      cost: 12.99,
       image:
         "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
     },
     {
       name: "Headphones v2",
-      cost: "$14.99",
+      cost: 14.99,
       image:
         "https://images.unsplash.com/photo-1494726161322-5360d4d0eeae?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=100&q=80",
     },
     {
       name: "Headphones v3",
-      cost: "$16.99",
+      cost: 16.99,
       image:
         "https://images.unsplash.com/photo-1547949003-9792a18a2601?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80",
     },
@@ -44,7 +44,7 @@ export default function Products({ addToCart }) {
               <div className="flex item-center mt-2"></div>
               <div className="flex item-center justify-between mt-3">
                 <h1 className="text-gray-700 font-bold text-xl">
-                  {product.cost}
+                  ${product.cost}
                 </h1>
                 <button
                   onClick={() => addToCart(product)}
