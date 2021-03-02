@@ -11,11 +11,33 @@ function App() {
   const removeFromCart = (productToremove) => {
     setCart(cart.filter((product) => product !== productToremove));
   };
+
   const addToCart = (product) => {
-    setCart([...cart, { ...product }]);
+    let newCart = [...cart];
+    let itemInCart = newCart.find((item) => product.name === item.name);
+    if (itemInCart) {
+      itemInCart.quantity++;
+    } else {
+      itemInCart = {
+        ...product,
+        quantity: 1,
+      };
+      newCart.push(itemInCart);
+    }
+    setCart(newCart);
   };
+  const setQuantity = (product, amount) => {
+    const newCart = [...cart];
+    newCart.find((item) => item.name === product.name).quantity = amount;
+    setCart(newCart);
+  };
+
   const clearCart = () => {
     setCart([]);
+  };
+
+  const getCartTotal = () => {
+    return cart.reduce((sum, { quantity }) => sum + quantity, 0);
   };
   const navigateTo = (nextPage) => {
     setPage(nextPage);
@@ -56,7 +78,7 @@ function App() {
             />
           </svg>
           <span className="absolute top-2 right-3 bg-red-600 rounded-full p-0.5">
-            {cart.length}
+            {getCartTotal()}
           </span>
         </button>
       </header>
@@ -66,6 +88,7 @@ function App() {
           cart={cart}
           removeFromCart={removeFromCart}
           clearCart={clearCart}
+          setQuantity={setQuantity}
         />
       )}
     </div>

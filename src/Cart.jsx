@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-export default function Cart({ cart, removeFromCart, clearCart }) {
-  const getTotal = () => {
-    return Math.round(cart.reduce((sum, { cost }) => sum + cost, 0));
+export default function Cart({ cart, removeFromCart, clearCart, setQuantity }) {
+  const getTotalSum = () => {
+    return cart.reduce((sum, { cost, quantity }) => sum + cost * quantity, 0);
   };
 
   return (
@@ -27,6 +27,12 @@ export default function Cart({ cart, removeFromCart, clearCart }) {
                 <h1 className="text-gray-900 font-bold text-2xl">
                   {product.name}
                 </h1>
+                <input
+                  type="number"
+                  value={product.quantity}
+                  onChange={(e) => setQuantity(product, e.target.value)}
+                />
+
                 <div className="flex item-center mt-2"></div>
                 <div className="flex item-center justify-between mt-3">
                   <h1 className="text-gray-700 font-bold text-xl">
@@ -44,7 +50,7 @@ export default function Cart({ cart, removeFromCart, clearCart }) {
           </div>
         ))}
         <div className="fixed left-0 bottom-0 flex justify-center font-bold bg-gray-200 w-screen p-6 text-red-500">
-          Total Cost: ${getTotal()}
+          Total Cost: ${getTotalSum()}
         </div>
       </div>
     </>
